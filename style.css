@@ -55,8 +55,9 @@ ul{
     font-size: 1.2rem;
 }
 
-li {
+ul li {
     color:rgb(171, 166, 173);
+    cursor: pointer;
 }
 .square {
     display: inline-block;
@@ -82,4 +83,6 @@ li {
     height: auto;
     padding: 10px 35px;
     color:#fff;
+    text-decoration: none;
+    font-size: 1.1rem;
 }
