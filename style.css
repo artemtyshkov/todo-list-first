@@ -57,6 +57,7 @@ h1 {
 
 }
 .list {
+    position: relative;
 }
 
 ul{
@@ -95,13 +96,29 @@ ul li {
     -o-transform: translate(-50%);
 }
 .popup {
+    display: none;
+}
 
+.show {
+    display: block;
+}
+
+input {
+    padding: 5px;
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--font-clr);
+    color: var(--font-clr);
+    font-size: 1.1rem;
+    font-family: 'Jost', sans-serif;
 }
 
 button {
     padding: 10px 35px;
     background-color: var(--purple);
     border: none;
+    cursor: pointer;
     user-select: none;
     outline: none;
     border-radius: 20px;
@@ -114,28 +131,4 @@ button {
 button > .btn-text {
     color:#fff;
     font-size: 18px;
-}
-
-input {
-    position: absolute;
-    padding: 5px;
-    width: 400px;
-    outline: none;
-    left: -118px;
-    top: -33px;
-}
-
-.arrow {
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid rgb(136, 136, 136);
-    display: inline-block;
-    position: absolute;
-    left: 50%;
-    top: -5px;
-    transform: translate(-50%);
-    -webkit-transform: translate(-50%);
-    -moz-transform: translate(-50%);
-    -ms-transform: translate(-50%);
-    -o-transform: translate(-50%);
 }
