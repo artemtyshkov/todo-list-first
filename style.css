@@ -2,6 +2,8 @@
 
 :root {
     --purple: rgb(169, 89, 189);
+    --purple-hover: rgb(189, 101, 211);
+    --purple-active: rgb(198, 106, 221);
     --bg-clr: rgb(197, 206, 212);
     --font-clr: rgb(171, 166, 173);
 }
@@ -38,7 +40,7 @@ h1 {
     width: 100%;
     height: 20px;
     background: var(--bg-clr);
-    
+
 }
 
 .container {
@@ -53,10 +55,11 @@ h1 {
 }
 .content {
     height: 240px;
-    padding: 25px 5px;
+    padding: 25px 35px;
     overflow-y: auto;
 
 }
+
 .list {
     position: relative;
 }
@@ -64,6 +67,7 @@ h1 {
 ul{
     list-style: none;
     font-size: 1.2rem;
+    opacity: 1;
 }
 
 ul li {
@@ -127,6 +131,15 @@ button {
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+}
+
+button:hover{
+    background: var(--purple-hover);
+}
+
+button:active{
+    background: var(--purple-active);
+
 }
 
 button > .btn-text {
