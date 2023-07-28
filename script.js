@@ -6,16 +6,22 @@ const ul = document.querySelector('ul');
 const input = document.querySelector('input');
 
 popupButton.addEventListener('click', () => {
-    popup.classList.toggle('show');
+    popup.classList.add('show');
     ul.style.opacity = '0.5';
     popupButton.classList.add('hide');
-    addButton.classList.add('show');
-    cancelButton.classList.add('show');
-
-
+    addButton.classList.remove('hide');
+    cancelButton.classList.remove('hide');
 
     if (!popup.classList.contains('show')) {
         ul.style.opacity = '';
     }
+});
+
+cancelButton.addEventListener('click', () => {
+    popup.classList.remove('show');
+    ul.style.opacity = '';
+    popupButton.classList.remove('hide');
+    addButton.classList.add('hide');
+    cancelButton.classList.add('hide');
 });
 
