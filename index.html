@@ -5,19 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src = "script.js" defer></script>
     <title>Todo List</title>
 </head>
+
 <body>
 <div class="container">
+
     <div class="header">
         <h1>Website todo</h1>
         <div class="clearfix"></div>
     </div>
+
     <div class="content">
+
         <div class="list">
+
             <div class="popup">
                 <input type="text" placeholder="Add your task">
             </div>
+
             <ul>
                 <li><div class="square"></div>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, eveniet?</li>
                 <li><div class="square"></div>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, eveniet?</li>
@@ -28,15 +35,27 @@
                 <li><div class="square"></div>lorem ip</li>
             </ul>
         </div>
+
         <div class="btn-block">
-            <button>
+            <a class="popup-button buttons">
                 <span class="btn-text">+ New Task</span>
-            </button>
+            </a>
+            <div class="two-buttons">
+                <a class="cancel-button buttons">
+                    <span class="btn-text">Cancel</span>
+                </a>
+                <a type="button" class="add-button buttons">
+                    <span class="btn-text">Add</span>
+                </a>
+            </div>
+
+
+
+
         </div>
     </div>
 </div>
 
-<script src = "script.js"></script>
 </body>
 
 </html>
