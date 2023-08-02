@@ -5,6 +5,8 @@ const popup = document.querySelector('.popup');
 const ul = document.querySelector('ul');
 const input = document.querySelector('input');
 
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
 popupButton.addEventListener('click', () => {
     popup.classList.add('show');
     input.focus();
@@ -18,19 +20,22 @@ popupButton.addEventListener('click', () => {
     }
 });
 
-addButton.addEventListener('click', () => {
-    if (input.value.trim() == '') {
-        firstStage();
-    } else {
-        addTask();
-    }
-});
-
-input.addEventListener('keyup', (e) => {
-    if (e.code === 'Enter') {
-        addTask();
-    }
-});
+function saveData(){
+    addButton.addEventListener('click', () => {
+        if (input.value.trim() === '') {
+            firstStage();
+        } else {
+            addTask();
+        }
+    });
+    
+    input.addEventListener('keyup', (e) => {
+        if (e.code === 'Enter') {
+            addTask();
+        }
+    });
+}
+saveData();
 
 cancelButton.addEventListener('click', () => {
     firstStage();
@@ -48,21 +53,30 @@ function firstStage() {
 }
 
 function addTask() {
+
+    itemsArray.push(input.value);
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+
     let li = document.createElement('li');
 
     li.innerHTML += `<div class="square"></div>${input.value}`;
 
     ul.append(li);
-    saveTask();
     input.value = '';
     firstStage();
 }
 
-function saveTask() {
-    localStorage.setItem('task', `${input.value}`);
-}
+// SMTH NEW
 
-function getTasks() {
-    localStorage.getItem('task');
+function displayItems() {
+
+    for (let i = 0; i < itemsArray.length; i++) {
+    
+    let li = document.createElement('li');
+
+    li.innerHTML += `<div class="square"></div>${itemsArray[i]}`;
+
+    ul.append(li);
+    }
 }
-getTasks();
+displayItems();
