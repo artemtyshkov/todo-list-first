@@ -55,6 +55,7 @@ h1 {
 
 .content {
     height: 240px;
+    /* width: 400px; */
     padding: 25px 35px;
     overflow-y: auto;
 }
