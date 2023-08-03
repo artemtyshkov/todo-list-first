@@ -47,17 +47,18 @@ h1 {
 
 .container {
     width: 500px;
-    height: 350px;
     background: #fff;
     box-shadow: 5px 0.8 #000;
     position: relative;
 }
 
 .content {
-    height: 240px;
-    /* width: 400px; */
-    padding: 25px 35px;
-    overflow-y: auto;
+    height: fit-content;
+    max-height: 350px;
+    overflow: auto;
+    width: 100%;
+    padding: 25px 60px 25px 35px;
+    word-wrap: break-word;
 }
 
 .list {
@@ -75,6 +76,7 @@ ul li {
     cursor: pointer;
     word-break: break-all;
 }
+
 .square {
     display: inline-block;
     height: 10px;
@@ -156,6 +158,13 @@ input {
     font-size: 1.125rem;
 }
 
+.fa-xmark {
+    content: '';
+    position: absolute;
+    right: -35px;
+    top: 3px;
+}
+
 /* Classes for javascript */
 
 .popup {
@@ -168,4 +177,8 @@ input {
 
 .hide {
     display: none;
+}
+
+.completed {
+    text-decoration: line-through;
 }

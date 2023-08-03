@@ -3,7 +3,10 @@ const cancelButton = document.querySelector('.cancel-button');
 const addButton = document.querySelector('.add-button');
 const popup = document.querySelector('.popup');
 const ul = document.querySelector('ul');
+const li = document.querySelectorAll('li');
 const input = document.querySelector('input');
+const xmark = document.querySelector('.fa-xmark');
+
 
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
@@ -42,6 +45,16 @@ cancelButton.addEventListener('click', () => {
     input.value = '';
 });
 
+// xmark.addEventListener('click', () => {
+
+// });
+
+li.forEach((li) => {
+    li.addEventListener('click', () => {
+        li.classList.toggle('comleted');
+    });
+});
+
 // functions
 
 function firstStage() {
@@ -53,17 +66,16 @@ function firstStage() {
 }
 
 function addTask() {
-
-    itemsArray.push(input.value);
-    localStorage.setItem('items', JSON.stringify(itemsArray));
-
-    let li = document.createElement('li');
-
-    li.innerHTML += `<div class="square"></div>${input.value}`;
-
-    ul.append(li);
-    input.value = '';
-    firstStage();
+        itemsArray.push(input.value);
+        localStorage.setItem('items', JSON.stringify(itemsArray));
+    
+        let li = document.createElement('li');
+    
+        li.innerHTML += `<div class="square"></div><i class="fa-solid fa-xmark"></i>${input.value}`;
+    
+        ul.appendChild(li);
+        input.value = '';
+        firstStage();
 }
 
 // SMTH NEW
@@ -74,7 +86,7 @@ function displayItems() {
     
     let li = document.createElement('li');
 
-    li.innerHTML += `<div class="square"></div>${itemsArray[i]}`;
+    li.innerHTML += `<div class="square"></div><i class="fa-solid fa-xmark"></i>${itemsArray[i]}`;
 
     ul.append(li);
     }
