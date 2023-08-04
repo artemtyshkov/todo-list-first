@@ -3,10 +3,10 @@ const cancelButton = document.querySelector('.cancel-button');
 const addButton = document.querySelector('.add-button');
 const popup = document.querySelector('.popup');
 const ul = document.querySelector('ul');
-const li = document.querySelectorAll('li');
+const li = document.querySelectorAll('.li-item');
 const input = document.querySelector('input');
-const xmark = document.querySelector('.fa-xmark');
-
+const xmark = document.querySelectorAll('.fa-xmark');
+const list = document.querySelector('.list');
 
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
@@ -45,14 +45,17 @@ cancelButton.addEventListener('click', () => {
     input.value = '';
 });
 
-// xmark.addEventListener('click', () => {
-
+// ul.addEventListener('click', (e) => {
+//     if (e.target.contains('li')) {
+//         e.target.classList.toggle('complete');
+//     }
 // });
 
-li.forEach((li) => {
-    li.addEventListener('click', () => {
-        li.classList.toggle('comleted');
-    });
+ul.addEventListener('click', (e) => {
+    let target = e.target.closest('li');
+    if (target){
+        target.innerHTML = '';
+    }
 });
 
 // functions
@@ -70,10 +73,10 @@ function addTask() {
         localStorage.setItem('items', JSON.stringify(itemsArray));
     
         let li = document.createElement('li');
-    
+        li.classList.add('li-item');
         li.innerHTML += `<div class="square"></div><i class="fa-solid fa-xmark"></i>${input.value}`;
     
-        ul.appendChild(li);
+        ul.append(li);
         input.value = '';
         firstStage();
 }
@@ -85,7 +88,7 @@ function displayItems() {
     for (let i = 0; i < itemsArray.length; i++) {
     
     let li = document.createElement('li');
-
+    li.classList.add('li-item');
     li.innerHTML += `<div class="square"></div><i class="fa-solid fa-xmark"></i>${itemsArray[i]}`;
 
     ul.append(li);
