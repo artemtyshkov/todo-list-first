@@ -10,7 +10,7 @@ let xmarkEl = document.querySelectorAll('.fa-xmark');
 
 let todos = JSON.parse(localStorage.getItem('items')) || [];
 
-displayTodos();
+renderTodos();
 liEl = document.querySelectorAll('.li-item');
 xmarkEl = document.querySelectorAll('.fa-xmark');
 
@@ -27,54 +27,38 @@ popupButton.addEventListener('click', () => {
     }
 });
 
-function saveData(){
-    addButton.addEventListener('click', () => {
-        if (input.value.trim() === '') {
-            alert('Todo is empty');
-            input.focus();
-        } else {
-            addTask();
-            displayTodos();
-        }
-    });
-    
-    input.addEventListener('keyup', (e) => {
-        if (e.code === 'Enter') {
-            addTask();
-        }
-    });
-}
-saveData();
+addButton.addEventListener('click', () => {
+    saveTodo();
+    renderTodos();
+});
+
+input.addEventListener('keyup', (e) => {
+    if (e.code === 'Enter' && input.value === '') {
+        alert('Todo is empty');
+        input.focus();
+    } else if (e.code === 'Enter') {
+        saveTodo();
+        renderTodos();
+    }
+});
+
 
 cancelButton.addEventListener('click', () => {
     firstStage();
     input.value = '';
 });
 
-    xmarkEl.forEach(xmark => {
-        xmark.addEventListener('click', e => {
-            for (let i = 0; i < liEl.length; i++) {
-                
-            }
-            
-        });
-    });
+list.addEventListener('click', (e) => {
+    const target = e.target;
 
-// delete todos from localStorage and save it (need to check last one)
+    if (target.className  !== 'li-item' && 
+        target.className !== 'square' && 
+        !target.classList.contains('fa-solid')) {return;}
 
-xmarkEl.forEach(elem => {
-    elem.addEventListener('click', (e) => {
+    const todoId = Number(target.parentElement.id) || Number(target.id);
 
-        todos.filter(() => {
-            //textContent
-            if(e.textContent) {
-                return e.textContent == '';
-            }
-        });
-
-        elem.parentElement.remove();
-
-    });
+    const action = target.dataset.action;
+    console.log(todoId, action);
 });
 
 // functions
@@ -87,32 +71,40 @@ function firstStage() {
     cancelButton.classList.add('hide');
 }
 
-function addTask() {
-    todos.push(input.value);
+function saveTodo() {
     // localStorage.setItem('items', JSON.stringify(todos));
+    const isDuplicate = todos.some((todo) => todo.value === input.value);
+
+    if (input.value === '') {
+        alert('Todo is empty');
+        input.focus();
+    } else if (isDuplicate) {
+        alert('Todo already exists');
+    } else {
+        const todo = {
+            value: input.value,
+            checked: false
+        };
     
-    // if (input.value.t) {
-    //     alert();
-    // }
+        todos.push(todo);
+        console.log(todos);
+        input.value = '';
+        firstStage();
+    }
 
-    let li = document.createElement('li');
-    li.classList.add('li-item');
-    li.innerHTML += `<div class="square"></div><i class="fa-solid fa-xmark"></i>${input.value}`;
-    list.append(li);
-    input.value = '';
-    firstStage();
-
-    liEl = document.querySelectorAll('.li-item');
-    xmarkEl = document.querySelectorAll('.fa-xmark');
+    // liEl = document.querySelectorAll('.li-item');
+    // xmarkEl = document.querySelectorAll('.fa-xmark');
 }
 
-function displayTodos() {
-    for (let i = 0; i < todos.length; i++) {
-    
-        let li = document.createElement('li');
-        li.classList.add('li-item');
-        li.innerHTML += `<div class="square"></div><i class="fa-solid fa-xmark"></i>${todos[i]}`;
-
-        list.append(li);
-    }
+function renderTodos() {
+    list.innerHTML = '';
+    todos.forEach((todo, index) => {
+        list.innerHTML += `
+            <li class="li-item" data-action="check" id="${index}">
+                <div class="square" data-action="check"></div>
+                <i class="fa-solid fa-xmark" data-action="delete"></i>
+            ${todo.value}
+            </li>
+        `;
+    });
 }

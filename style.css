@@ -160,7 +160,6 @@ input {
 }
 
 .fa-xmark {
-    content: '';
     position: absolute;
     right: -35px;
     top: 3px;
