@@ -42,7 +42,6 @@ input.addEventListener('keyup', (e) => {
     }
 });
 
-
 cancelButton.addEventListener('click', () => {
     firstStage();
     input.value = '';
@@ -51,14 +50,17 @@ cancelButton.addEventListener('click', () => {
 list.addEventListener('click', (e) => {
     const target = e.target;
 
-    if (target.className  !== 'li-item' && 
+    if (!target.classList.contains('li-item') && 
         target.className !== 'square' && 
         !target.classList.contains('fa-solid')) {return;}
 
     const todoId = Number(target.parentElement.id) || Number(target.id);
 
     const action = target.dataset.action;
-    console.log(todoId, action);
+    console.log(action);
+    if (action === 'check') {
+        checkTodo(todoId);
+    }
 });
 
 // functions
@@ -87,24 +89,29 @@ function saveTodo() {
         };
     
         todos.push(todo);
-        console.log(todos);
         input.value = '';
         firstStage();
     }
-
-    // liEl = document.querySelectorAll('.li-item');
-    // xmarkEl = document.querySelectorAll('.fa-xmark');
 }
 
 function renderTodos() {
     list.innerHTML = '';
     todos.forEach((todo, index) => {
         list.innerHTML += `
-            <li class="li-item" data-action="check" id="${index}">
+            <li class="li-item ${todo.checked ? "completed" : ""}" data-action="check" id="${index}">
                 <div class="square" data-action="check"></div>
                 <i class="fa-solid fa-xmark" data-action="delete"></i>
             ${todo.value}
             </li>
         `;
     });
+}
+
+function checkTodo(todoId) {
+    todos = todos.map((todo, index) => ({
+            ...todo,
+            checked: index === todoId ? !todo.checked : todo.checked,
+    }));
+
+    renderTodos();
 }
