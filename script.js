@@ -4,15 +4,15 @@ const addButton = document.querySelector('.add-button');
 const popup = document.querySelector('.popup');
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
-let liEl = document.querySelectorAll('.li-item');
-let xmarkEl = document.querySelectorAll('.fa-xmark');
+// let liEl = document.querySelectorAll('.li-item');
+// let xmarkEl = document.querySelectorAll('.fa-xmark');
 // const listWrapper = document.querySelector('.list-wrapper');
 
-let todos = JSON.parse(localStorage.getItem('items')) || [];
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 renderTodos();
-liEl = document.querySelectorAll('.li-item');
-xmarkEl = document.querySelectorAll('.fa-xmark');
+// liEl = document.querySelectorAll('.li-item');
+// xmarkEl = document.querySelectorAll('.fa-xmark');
 
 popupButton.addEventListener('click', () => {
     popup.classList.add('show');
@@ -30,6 +30,7 @@ popupButton.addEventListener('click', () => {
 addButton.addEventListener('click', () => {
     saveTodo();
     renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
 });
 
 input.addEventListener('keyup', (e) => {
@@ -39,6 +40,7 @@ input.addEventListener('keyup', (e) => {
     } else if (e.code === 'Enter') {
         saveTodo();
         renderTodos();
+        localStorage.setItem('todos', JSON.stringify(todos));
     }
 });
 
@@ -60,6 +62,10 @@ list.addEventListener('click', (e) => {
     console.log(action);
     if (action === 'check') {
         checkTodo(todoId);
+    }
+
+    if (action === 'delete') {
+        deleteTodo(todoId);
     }
 });
 
@@ -114,4 +120,11 @@ function checkTodo(todoId) {
     }));
 
     renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function deleteTodo(todoId) {
+    todos = todos.filter((todo, index) => index !== todoId);
+    renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
 }
