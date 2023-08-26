@@ -1,5 +1,22 @@
-@media screen and (max-width:514px) {
+@media screen and (max-width:524px) {
     .container {
         margin: 10px;
+    }
+}
+
+@media screen and (max-width:375px){
+
+    body{
+        font-size: 1rem;
+    }
+
+    .two-buttons {
+        column-gap: 35px;
+        font-size: 14px;
+    }
+
+    .buttons {
+        padding: 8px;
+        width: 110px;
     }
 }
