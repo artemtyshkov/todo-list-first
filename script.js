@@ -4,15 +4,10 @@ const addButton = document.querySelector('.add-button');
 const popup = document.querySelector('.popup');
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
-// let liEl = document.querySelectorAll('.li-item');
-// let xmarkEl = document.querySelectorAll('.fa-xmark');
-// const listWrapper = document.querySelector('.list-wrapper');
 
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 renderTodos();
-// liEl = document.querySelectorAll('.li-item');
-// xmarkEl = document.querySelectorAll('.fa-xmark');
 
 popupButton.addEventListener('click', () => {
     popup.classList.add('show');
@@ -80,7 +75,6 @@ function firstStage() {
 }
 
 function saveTodo() {
-    // localStorage.setItem('items', JSON.stringify(todos));
     const isDuplicate = todos.some((todo) => todo.value === input.value);
 
     if (input.value === '') {
