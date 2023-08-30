@@ -104,15 +104,9 @@ input {
 
 .btn-block{
     position: absolute;
-    bottom: -24px;
-    left: 50%;
-    transform: translate(-50%);
+    bottom: -1.4rem;
     display: flex;
-    flex-direction: column-reverse;
-    -webkit-transform: translate(-50%);
-    -moz-transform: translate(-50%);
-    -ms-transform: translate(-50%);
-    -o-transform: translate(-50%);
+
 }
 
 .buttons {
