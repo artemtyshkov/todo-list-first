@@ -64,8 +64,6 @@ list.addEventListener('click', (e) => {
     }
 });
 
-// functions
-
 function firstStage() {
     popup.classList.remove('show');
     list.style.opacity = '';
@@ -99,7 +97,7 @@ function renderTodos() {
     todos.forEach((todo, index) => {
         list.innerHTML += `
             <li class="li-item ${todo.checked ? "completed" : ""}" data-action="check" id="${index}">
-                <div class="square" data-action="check"></div>
+                <div class="square" data-action="check">${todo.checked ? `<i class="fa-solid fa-check" style="color: #ffffff;"></i>` : ""}</div>
                 <i class="fa-solid fa-xmark" data-action="delete"></i>
             ${todo.value}
             </li>

@@ -4,7 +4,13 @@
     --purple: rgb(169, 89, 189);
     --purple-hover: rgb(189, 101, 211);
     --bg-clr: rgb(197, 206, 212);
-    --font-clr: rgb(151, 149, 151);
+    --font-clr: #979597;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -18,12 +24,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
 }
 
 .header {
@@ -78,17 +78,34 @@ ul li {
     word-break: break-all;
 }
 
+.fa-check {
+    background-color: var(--font-clr);
+    object-fit: cover;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    height: 19px;
+    width: 19px;
+}
+
 .square {
     display: inline-block;
-    height: 10px;
-    width: 10px;
-    border: 2px solid var(--font-clr);
+    height: 19px;
+    width: 19px;
+    border: 1px solid var(--font-clr);
     margin-right: 10px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+}
+
+li.completed .square {
+    border: none;
 }
 
 input {
@@ -99,18 +116,23 @@ input {
     border-bottom: 1px solid var(--font-clr);
     color: var(--font-clr);
     font-size: 1.1rem;
-    font-family: 'Jost', sans-serif;
+    font-family: inherit;
 }
 
 .btn-block{
     position: absolute;
-    bottom: -1.4rem;
-    display: flex;
-
+    bottom: -1.325rem;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 
 .buttons {
     text-align: center;
+    display: inline-block;
     padding: 10px;
     width: 130px;
     border: none;
@@ -122,11 +144,16 @@ input {
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
 }
 
 .two-buttons {
     display: flex;
-    column-gap: 70px;
+    column-gap: 4rem;
 }
 
 .cancel-button {
@@ -135,9 +162,19 @@ input {
     color: red;
 }
 
+.cancel-button:hover {
+    background-color: rgb(247, 246, 246);
+    border-color: rgb(255, 31, 31);
+    color: rgb(255, 31, 31);
+}
+
 .add-button {
     background-color: rgb(21, 163, 21);
     color: #fff;
+}
+
+.add-button:hover {
+    background-color: rgb(23, 182, 23);
 }
 
 .popup-button {
@@ -158,8 +195,6 @@ input {
     right: -35px;
     top: 3px;
 }
-
-/* Classes for javascript */
 
 .popup {
     display: none;

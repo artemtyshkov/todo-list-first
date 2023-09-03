@@ -5,14 +5,13 @@
 }
 
 @media screen and (max-width:375px){
-
     body{
         font-size: 1rem;
     }
 
     .two-buttons {
-        column-gap: 35px;
-        font-size: 14px;
+        column-gap: 2rem;
+        font-size: 0.875rem;
     }
 
     .buttons {
