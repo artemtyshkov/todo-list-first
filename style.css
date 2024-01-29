@@ -72,6 +72,8 @@ ul{
 }
 
 ul li {
+    display: flex;
+    align-items: center;
     position: relative;
     color: var(--font-clr);
     cursor: pointer;
