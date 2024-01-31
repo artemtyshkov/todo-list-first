@@ -1,24 +1,23 @@
-const popupButton = document.querySelector(".popup-button");
-const cancelButton = document.querySelector(".cancel-button");
-const addButton = document.querySelector(".add-button");
-const popup = document.querySelector(".popup");
-const list = document.querySelector("ul");
-const input = document.querySelector("input");
+const newTaskButton = document.querySelector(".main-content__buttons_new");
+const cancelButton = document.querySelector(".main-content__buttons_cancel");
+const addButton = document.querySelector(".main-content__buttons_add");
+const todoList = document.querySelector(".todo-list");
+const input = document.querySelector(".main-content__input");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 renderTodos();
 
-popupButton.addEventListener("click", () => {
-    popup.classList.add("show");
+newTaskButton.addEventListener("click", () => {
+    input.classList.add("show");
     input.focus();
-    list.style.opacity = "0.5";
-    popupButton.classList.add("hide");
+    todoList.style.opacity = "0.5";
+    newTaskButton.classList.add("hide");
     addButton.classList.remove("hide");
     cancelButton.classList.remove("hide");
 
-    if (!popup.classList.contains("show")) {
-        list.style.opacity = "";
+    if (!input.classList.contains("show")) {
+        todoList.style.opacity = "";
     }
 });
 
@@ -44,12 +43,12 @@ cancelButton.addEventListener("click", () => {
     input.value = "";
 });
 
-list.addEventListener("click", (e) => {
+todoList.addEventListener("click", (e) => {
     const target = e.target;
 
     if (
-        !target.classList.contains("li-item") &&
-        target.className !== "square" &&
+        !target.classList.contains("todo-list__item") &&
+        target.className !== "todo-list__item__square" &&
         !target.classList.contains("fa-solid")
     ) {
         return;
@@ -69,9 +68,9 @@ list.addEventListener("click", (e) => {
 });
 
 function firstStage() {
-    popup.classList.remove("show");
-    list.style.opacity = "";
-    popupButton.classList.remove("hide");
+    input.classList.remove("show");
+    todoList.style.opacity = "";
+    newTaskButton.classList.remove("hide");
     addButton.classList.add("hide");
     cancelButton.classList.add("hide");
 }
@@ -97,13 +96,13 @@ function saveTodo() {
 }
 
 function renderTodos() {
-    list.innerHTML = "";
+    todoList.innerHTML = "";
     todos.forEach((todo, index) => {
-        list.innerHTML += `
-            <li class="li-item ${
+        todoList.innerHTML += `
+            <li class="todo-list__item ${
                 todo.checked ? "completed" : ""
             }" data-action="check" id="${index}">
-                <div class="square" data-action="check">${
+                <div class="todo-list__item__square" data-action="check">${
                     todo.checked
                         ? `<i class="fa-solid fa-check" style="color: #ffffff;"></i>`
                         : ""

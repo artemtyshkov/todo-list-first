@@ -14,36 +14,51 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="header">
-                <h1>Website todo</h1>
-                <div class="clearfix"></div>
+        <div class="wrapper">
+            <div class="main__header">
+                <h1 class="main__header-title">Todo list</h1>
             </div>
 
-            <div class="content">
-                <div class="list-wrapper">
-                    <div class="popup">
-                        <input type="text" placeholder="Add your task" />
-                    </div>
-                    <ul></ul>
-                </div>
+            <main class="main-wrapper">
+                <div class="main-content">
+                    <input
+                        class="main-content__input"
+                        type="text"
+                        placeholder="Add your task"
+                    />
+                    <ul class="todo-list"></ul>
 
-                <div class="btn-block">
-                    <a type="button" class="popup-button buttons">
-                        <span class="btn-text">+ New Task</span>
-                    </a>
-                    <div class="two-buttons">
-                        <a type="button" class="cancel-button buttons hide">
-                            <span class="btn-text">Cancel</span>
+                    <div class="main-content__buttons">
+                        <a
+                            type="button"
+                            class="main-content__buttons_new buttons"
+                        >
+                            <span class="main-content__buttons-text"
+                                >+ New Task</span
+                            >
                         </a>
-                        <a type="button" class="add-button buttons hide">
-                            <span class="btn-text">Add</span>
-                        </a>
+                        <div class="main-content__buttons-two-buttons">
+                            <a
+                                type="button"
+                                class="main-content__buttons_cancel buttons hide"
+                            >
+                                <span class="main-content__buttons-text"
+                                    >Cancel</span
+                                >
+                            </a>
+                            <a
+                                type="button"
+                                class="main-content__buttons_add buttons hide"
+                            >
+                                <span class="main-content__buttons-text"
+                                    >Add</span
+                                >
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
-
         <script src="script.js"></script>
     </body>
 </html>

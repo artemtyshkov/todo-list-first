@@ -1,15 +1,23 @@
 @media screen and (max-width:524px) {
-    .container {
+    .wrapper {
         margin: 10px;
     }
 }
 
 @media screen and (max-width:375px){
+    .wrapper {
+        width: 350px;
+    }
+
+    .main-wrapper {
+        width: 350px;
+    }
+
     body{
         font-size: 1rem;
     }
 
-    .two-buttons {
+    .main-content__buttons-two-buttons {
         column-gap: 2rem;
         font-size: 0.875rem;
     }

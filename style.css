@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 
 :root {
     --purple: rgb(169, 89, 189);
@@ -17,42 +17,45 @@ html {
     height: 100%;
 }
 
+
 body {
     height: 100%;
     background: var(--bg-clr);
-    font-family: 'Jost', sans-serif;
+    font-family: "Jost", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.header {
-    background: var(--purple);
-    color: #fff;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 500px;
+    box-shadow: 5px 0.8 #000;
 }
 
-h1 {
+.main__header {
+    background: var(--purple);
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.main__header-title {
     text-align: center;
     font-size: 1.25rem;
     letter-spacing: 2px;
     padding: 15px;
 }
 
-.clearfix {
-    width: 100%;
-    height: 20px;
-    background: var(--bg-clr);
-
-}
-
-.container {
+.main-wrapper {
     width: 500px;
     background: #fff;
     box-shadow: 5px 0.8 #000;
     position: relative;
 }
 
-.content {
+.main-content {
     height: fit-content;
     max-height: 350px;
     overflow: auto;
@@ -61,17 +64,13 @@ h1 {
     word-wrap: break-word;
 }
 
-.list {
-    position: relative;
-}
-
-ul{
+.todo-list {
     list-style: none;
     font-size: 1.2rem;
     opacity: 1;
 }
 
-ul li {
+.todo-list__item {
     display: flex;
     align-items: center;
     position: relative;
@@ -93,7 +92,7 @@ ul li {
     width: 19px;
 }
 
-.square {
+.todo-list__item__square {
     display: inline-block;
     height: 19px;
     width: 19px;
@@ -106,11 +105,12 @@ ul li {
     -o-border-radius: 50%;
 }
 
-li.completed .square {
+.todo-list__item.completed .todo-list__item__square {
     border: none;
 }
 
-input {
+.main-content__input {
+    display: none;
     padding: 5px;
     outline: none;
     width: 100%;
@@ -121,7 +121,7 @@ input {
     font-family: inherit;
 }
 
-.btn-block{
+.main-content__buttons {
     position: absolute;
     bottom: -1.325rem;
     left: 50%;
@@ -146,49 +146,49 @@ input {
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
-    transition: .2s;
-    -webkit-transition: .2s;
-    -moz-transition: .2s;
-    -ms-transition: .2s;
-    -o-transition: .2s;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
 }
 
-.two-buttons {
+.main-content__buttons-two-buttons {
     display: flex;
     column-gap: 4rem;
 }
 
-.cancel-button {
-    background-color:#fff;
+.main-content__buttons_cancel {
+    background-color: #fff;
     border: 1.5px solid red;
     color: red;
 }
 
-.cancel-button:hover {
+.main-content__buttons_cancel:hover {
     background-color: rgb(247, 246, 246);
     border-color: rgb(255, 31, 31);
     color: rgb(255, 31, 31);
 }
 
-.add-button {
+.main-content__buttons_add {
     background-color: rgb(21, 163, 21);
     color: #fff;
 }
 
-.add-button:hover {
+.main-content__buttons_add:hover {
     background-color: rgb(23, 182, 23);
 }
 
-.popup-button {
+.main-content__buttons_new {
     background-color: var(--purple);
     color: #fff;
 }
 
-.popup-button:hover{
+.main-content__buttons_new:hover {
     background: var(--purple-hover);
 }
 
-.btn-text {
+.main-content__buttons-text {
     font-size: 1.125rem;
 }
 
@@ -196,10 +196,6 @@ input {
     position: absolute;
     right: -35px;
     top: 3px;
-}
-
-.popup {
-    display: none;
 }
 
 .show {
