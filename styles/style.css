@@ -17,7 +17,6 @@ html {
     height: 100%;
 }
 
-
 body {
     height: 100%;
     background: var(--bg-clr);
@@ -39,6 +38,7 @@ body {
     background: var(--purple);
     color: #fff;
     margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .main__header-title {
@@ -53,6 +53,7 @@ body {
     background: #fff;
     box-shadow: 5px 0.8 #000;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .main-content {
@@ -151,11 +152,17 @@ body {
     -moz-transition: 0.2s;
     -ms-transition: 0.2s;
     -o-transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .main-content__buttons-two-buttons {
     display: flex;
     column-gap: 4rem;
+    transition: 200ms ease;
+    -webkit-transition: 200ms ease;
+    -moz-transition: 200ms ease;
+    -ms-transition: 200ms ease;
+    -o-transition: 200ms ease;
 }
 
 .main-content__buttons_cancel {
