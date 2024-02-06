@@ -1,10 +1,4 @@
-@media screen and (max-width:524px) {
-    .wrapper {
-        margin: 10px;
-    }
-}
-
-@media screen and (max-width:375px){
+@media screen and (max-width: 375px) {
     .wrapper {
         width: 350px;
     }
@@ -13,7 +7,7 @@
         width: 350px;
     }
 
-    body{
+    body {
         font-size: 1rem;
     }
 

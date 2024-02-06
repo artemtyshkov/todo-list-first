@@ -91,12 +91,13 @@ body {
     -o-border-radius: 50%;
     height: 19px;
     width: 19px;
+    pointer-events: none;
 }
 
-.todo-list__item__square {
+.todo-list__item-square {
     display: inline-block;
     height: 19px;
-    width: 19px;
+    min-width: 19px;
     border: 1px solid var(--font-clr);
     margin-right: 10px;
     border-radius: 50%;
@@ -106,7 +107,7 @@ body {
     -o-border-radius: 50%;
 }
 
-.todo-list__item.completed .todo-list__item__square {
+.todo-list__item.completed .todo-list__item-square {
     border: none;
 }
 

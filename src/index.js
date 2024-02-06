@@ -1,3 +1,5 @@
+import renderTodos from "./renderTodos.js";
+
 const newTaskButton = document.querySelector(".main-content__buttons_new");
 const cancelButton = document.querySelector(".main-content__buttons_cancel");
 const addButton = document.querySelector(".main-content__buttons_add");
@@ -6,7 +8,7 @@ const input = document.querySelector(".main-content__input");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-renderTodos();
+renderTodos(todoList, todos);
 
 newTaskButton.addEventListener("click", () => {
     input.classList.add("show");
@@ -22,8 +24,8 @@ newTaskButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
-    saveTodo();
-    renderTodos();
+    saveTodo(todos, input);
+    renderTodos(todoList, todos);
     localStorage.setItem("todos", JSON.stringify(todos));
 });
 
@@ -32,8 +34,8 @@ input.addEventListener("keyup", (e) => {
         alert("Todo is empty");
         input.focus();
     } else if (e.code === "Enter") {
-        saveTodo();
-        renderTodos();
+        saveTodo(todos, input);
+        renderTodos(todoList, todos);
         localStorage.setItem("todos", JSON.stringify(todos));
     }
 });
@@ -48,9 +50,11 @@ todoList.addEventListener("click", (e) => {
 
     if (
         !target.classList.contains("todo-list__item") &&
-        target.className !== "todo-list__item__square" &&
-        !target.classList.contains("fa-solid")
-    ) return;
+        target.className !== "todo-list__item-square" &&
+        !target.classList.contains("fa-check") &&
+        !target.classList.contains("fa-xmark")
+    )
+        return;
 
     const todoId = Number(target.parentElement.id) || Number(target.id);
 
@@ -73,8 +77,24 @@ function firstStage() {
     cancelButton.classList.add("hide");
 }
 
-function saveTodo() {
-    const isDuplicate = todos.some(todo => todo.value === input.value);
+function checkTodo(todoId) {
+    todos = todos.map((todo, index) => ({
+        ...todo,
+        checked: index === todoId ? !todo.checked : todo.checked,
+    }));
+
+    renderTodos(todoList, todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function deleteTodo(todoId) {
+    todos = todos.filter((todo, index) => index !== todoId);
+    renderTodos(todoList, todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function saveTodo(todos, input) {
+    const isDuplicate = todos.some((todo) => todo.value === input.value);
 
     if (input.value === "") {
         alert("Todo is empty");
@@ -91,39 +111,4 @@ function saveTodo() {
         input.value = "";
         firstStage();
     }
-}
-
-function renderTodos() {
-    todoList.innerHTML = "";
-    todos.forEach((todo, index) => {
-        todoList.innerHTML += `
-            <li class="todo-list__item ${
-                todo.checked ? "completed" : ""
-            }" data-action="check" id="${index}">
-                <div class="todo-list__item__square" data-action="check">${
-                    todo.checked
-                        ? `<i class="fa-solid fa-check" style="color: #fff;"></i>`
-                        : ""
-                }</div>
-                <i class="fa-solid fa-xmark" data-action="delete"></i>
-            ${todo.value}
-            </li>
-        `;
-    });
-}
-
-function checkTodo(todoId) {
-    todos = todos.map((todo, index) => ({
-        ...todo,
-        checked: index === todoId ? !todo.checked : todo.checked,
-    }));
-
-    renderTodos();
-    localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function deleteTodo(todoId) {
-    todos = todos.filter((todo, index) => index !== todoId);
-    renderTodos();
-    localStorage.setItem("todos", JSON.stringify(todos));
 }
